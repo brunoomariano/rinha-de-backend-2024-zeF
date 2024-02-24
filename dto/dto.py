@@ -6,7 +6,7 @@ from datetime import datetime
 class TransactionDTO(BaseModel):
     valor: int
     tipo: str
-    descricao: str
+    descricao: str = Field(max_lenght=10, min_lenght=1)
 
 
 class BalanceDTO(BaseModel):
