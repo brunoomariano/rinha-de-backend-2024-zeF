@@ -6,7 +6,7 @@ DB_URL = "postgresql://admin:123@localhost:5432/rinha"
 
 Base = declarative_base()
 
-engine = create_engine(DB_URL, echo=True)
+engine = create_engine(DB_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

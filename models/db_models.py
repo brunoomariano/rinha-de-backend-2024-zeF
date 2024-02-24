@@ -3,7 +3,7 @@ from sqlalchemy import (
     BigInteger, CHAR, ForeignKey,
     Text, TIMESTAMP, func
     )
-from db_config import Base
+from config.db_config import Base
 
 
 class Cliente(Base):
