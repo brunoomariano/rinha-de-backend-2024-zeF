@@ -1,8 +1,10 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-DB_URL = "postgresql://admin:123@localhost:5432/rinha"
+from .settings import Settings
+
+DB_URL = f"postgresql://{Settings().DB_USER}:{Settings().DB_PASSWORD}@{Settings().DB_HOST}:{Settings().DB_PORT}/{Settings().DB_NAME}"
 
 Base = declarative_base()
 

@@ -3,13 +3,16 @@ version: "3.5"
 services:
   api1: &api
     container_name: api1
-    image: zecs/api-insana-do-rei-zeca:latest
+    # image: zecs/api-insana-do-rei-zeca:latest
+    build: .
     hostname: api1
     environment:
-      - DB_HOSTNAME=db
-  
-    ports:
-      - "8001:8000"
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=rinha
+      - POSTGRES_HOST=db
+    # ports:
+    #   - "8001:8000"
     depends_on:
       - db
     deploy:
@@ -19,13 +22,11 @@ services:
           memory: "200MB"
 
   api2:
-    <<: *api 
+    <<: *api
     container_name: api2
     hostname: api2
-    environment:
-      - DB_HOSTNAME=db
-    ports:
-      - "8002:8000"
+    # ports:
+    #   - "8002:8000"
 
   db:
     image: postgres:latest
@@ -34,8 +35,8 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
       - POSTGRES_DB=rinha
-    ports:
-      - "5432:5432"
+    # ports:
+    #   - "5432:5432"
     volumes:
       - ./scriptsql:/docker-entrypoint-initdb.d:ro
     deploy:
@@ -58,9 +59,7 @@ services:
         limits:
           cpus: "0.20"
           memory: "10MB"
-
-
-networks:
-  default:
-    driver: bridge
-    name: rinha-nginx-2024q1
+# networks:
+#   default:
+#     driver: bridge
+#     name: rinha-nginx-2024q1
